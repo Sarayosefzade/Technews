@@ -15,7 +15,7 @@ def fetch_rss_feed(url):
         title = item.find('title').text if item.find('title') else 'No title'
         link = item.find('link').text if item.find('link') else 'No link'
         description = item.find('description').text if item.find('description') else 'No description'
-        categories = [category.text for category in item.find_all('category')]
+        tags = [category.text for category in item.find_all('category')]
 
         # Fetch the full content of the article
         article_content = fetch_article_content(link)
@@ -24,7 +24,7 @@ def fetch_rss_feed(url):
             'title': title,
             'link': link,
             'description': description,
-            'categories': categories,
+            'tags': tags,
             'full_content': article_content
         })
 
@@ -56,5 +56,5 @@ if __name__ == "__main__":
         print("Title:", article['title'])
         print("Link:", article['link'])
         print("Description:", article['description'])
-        print("Categories:", article['categories'])
+        print("Tags:", article['tags'])
         print("Full Content:", article['full_content'])
